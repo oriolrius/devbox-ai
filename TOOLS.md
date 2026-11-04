@@ -55,13 +55,14 @@ Capas de instalación:
 | `chezmoi` | Gestión portable de dotfiles. |
 | `pre-commit` | Framework para hooks de calidad antes de commit. |
 
-## Datos, texto y automatización (`devops` / `full`)
+## Datos, texto y automatización (`devops` / `full`; `just` y `mprocs` también en `ai`)
 
 | Tool | Para qué sirve |
 |---|---|
 | `jq` | Procesar JSON desde terminal. |
 | `yq` | Procesar YAML/XML/TOML; útil para config y Kubernetes. |
 | `just` | Runner de comandos tipo `Makefile` más ergonómico. |
+| `mprocs` | Lanza varios procesos en paralelo en una TUI (un panel por proceso); típico detrás de `just dev`. |
 | `make` (`gnumake`) | Automatización clásica de builds/tareas. |
 | `tree` | Ver estructura de carpetas en árbol. |
 | `rsync` | Sincronización/copias incrementales. |
