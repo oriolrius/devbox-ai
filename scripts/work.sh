@@ -5,9 +5,7 @@ ROOT="${COCKPIT_HOME:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 # shellcheck disable=SC1091
 source "$ROOT/scripts/profile-utils.sh"
 CONFIG_DIR="${COCKPIT_DEVBOX_CONFIG:-${DEVBOX_PROJECT_ROOT:-$ROOT}}"
-TEMPLATE="$ROOT/config/zellij/layouts/dev.kdl.template"
-LAYOUT="$ROOT/.devbox/gen/zellij-dev.kdl"
-SESSION="${COCKPIT_ZELLIJ_SESSION:-dev}"
+SESSION="${COCKPIT_HERDR_SESSION:-default}"
 RESET=0
 PROFILE_OVERRIDE=""
 FORWARD_ARGS=()
@@ -36,18 +34,14 @@ while [[ $# -gt 0 ]]; do
       cat <<'HELP'
 Usage: work [--profile ia|devops|full|base] [--reset]
 
-Attach to the cockpit Zellij session, or create it with the portable layout.
+Attach to the cockpit Herdr default session, or create it if missing.
 Use --profile to switch profiles before launching. `ia` and `ai` are aliases.
-Use --reset to delete the existing session first so tab/layout changes apply.
+Use --reset to delete the existing session first so a fresh one is created.
 
 Examples:
   work --profile ia
   work --profile devops --reset
   work --profile full
-
-Layout:
-  SYSTEM: one full-screen shell in $HOME
-  IA:     three-pane AI cockpit in the repo
 HELP
       exit 0
       ;;
@@ -75,29 +69,9 @@ if [[ -n "$PROFILE_OVERRIDE" ]]; then
   fi
 fi
 
-if [[ ! -f "$TEMPLATE" ]]; then
-  echo "Template de layout no encontrado: $TEMPLATE" >&2
-  exit 1
-fi
-
-mkdir -p "$(dirname "$LAYOUT")"
-ROOT="$ROOT" HOME_DIR="$HOME" TEMPLATE="$TEMPLATE" LAYOUT="$LAYOUT" python3 - <<'PY'
-import json
-import os
-from pathlib import Path
-
-def kdl_string(value: str) -> str:
-    return json.dumps(value)
-
-template = Path(os.environ['TEMPLATE']).read_text()
-rendered = template.replace('"__ROOT__"', kdl_string(os.environ['ROOT']))
-rendered = rendered.replace('"__HOME__"', kdl_string(os.environ['HOME_DIR']))
-Path(os.environ['LAYOUT']).write_text(rendered)
-PY
-
 cd "$ROOT"
 
-# Use normal terminal panes, not command panes. Zellij opens $SHELL for bare panes.
+# Use normal terminal panes, not command panes. Herdr opens $SHELL for bare panes.
 if command -v zsh >/dev/null 2>&1; then
   export SHELL="$(command -v zsh)"
 else
@@ -105,28 +79,27 @@ else
 fi
 export COCKPIT_HOME="${COCKPIT_HOME:-$ROOT}"
 
-if [[ -n "${ZELLIJ:-}" ]]; then
+if [[ -n "${HERDR_ENV:-}" ]]; then
   if [[ "$RESET" == 1 ]]; then
     cat >&2 <<MSG
-⚠️  Estás dentro de Zellij. No ejecuto work-reset desde dentro porque Zellij
-   puede interpretar la creación de layout como una tab nueva.
+⚠️  Estás dentro de Herdr. No ejecuto work-reset desde dentro.
 
-   Hazlo desde fuera de Zellij:
-     ZELLIJ_AUTO_STARTED=1 bash -lc 'cd "$ROOT" && devbox run -c "$CONFIG_DIR" -- bash "$ROOT/scripts/work.sh" --reset'
+   Hazlo desde fuera de Herdr:
+     bash -lc 'cd "$ROOT" && devbox run -c "$CONFIG_DIR" -- bash "$ROOT/scripts/work.sh" --reset'
 MSG
     exit 2
   fi
-  echo "ℹ️  Ya estás dentro de Zellij. Usa Ctrl+o d para detach o work-reset desde fuera."
+  echo "ℹ️  Ya estás dentro de Herdr. Detach con tu keybinding o work-reset desde fuera."
   exit 0
 fi
 
 if [[ "$RESET" == 1 ]]; then
-  # Delete removes EXITED/resurrectable sessions too; --force kills if still running.
-  zellij delete-session --force "$SESSION" >/dev/null 2>&1 || true
+  herdr session delete "$SESSION" >/dev/null 2>&1 || true
 fi
 
-if zellij attach "$SESSION" 2>/dev/null; then
-  exit 0
+# Bare `herdr` launches or attaches to the default persistent session; a named
+# session goes through the same launch-or-attach path with --session.
+if [[ "$SESSION" == "default" ]]; then
+  exec herdr
 fi
-
-exec zellij --session "$SESSION" --new-session-with-layout "$LAYOUT"
+exec herdr --session "$SESSION"
