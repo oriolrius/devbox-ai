@@ -70,6 +70,12 @@ Capas de instalación:
 | `wget` | Descargar archivos por HTTP/FTP. |
 | `direnv` | Cargar variables de entorno por directorio. |
 
+## Multimedia (`ai`)
+
+| Tool | Para qué sirve |
+|---|---|
+| `ffmpeg` | Convertir, recortar y extraer audio/fotogramas de vídeo; lo usan las transcripciones con Whisper. |
+
 ## Lenguajes y toolchains
 
 | Tool | Para qué sirve |
