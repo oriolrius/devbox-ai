@@ -20,10 +20,15 @@
     "python312",
     "nodejs@22",
     "gh@latest",
-    "vscode@latest"
+    "vscode@latest",
+    "google-chrome@latest",
+    "just",
+    "mprocs",
+    "git-lfs@latest"
   ],
   "env": {
-    "NPM_CONFIG_PREFIX": "$HOME/.npm-global"
+    "NPM_CONFIG_PREFIX":    "$HOME/.npm-global",
+    "NIXPKGS_ALLOW_UNFREE": "1"
   },
   "shell": {
     "init_hook": [
