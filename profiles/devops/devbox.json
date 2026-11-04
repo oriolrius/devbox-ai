@@ -39,6 +39,7 @@
     "sops",
     "direnv",
     "just",
+    "mprocs",
     "gnumake",
     "gcc",
     "python312Packages.pip",
