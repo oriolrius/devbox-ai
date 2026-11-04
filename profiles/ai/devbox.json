@@ -24,7 +24,8 @@
     "google-chrome@latest",
     "just",
     "mprocs",
-    "git-lfs@latest"
+    "git-lfs@latest",
+    "ffmpeg@latest"
   ],
   "env": {
     "NPM_CONFIG_PREFIX":    "$HOME/.npm-global",
