@@ -96,6 +96,119 @@
         }
       }
     },
+    "ffmpeg@latest": {
+      "last_modified": "2026-10-08T19:21:32Z",
+      "resolved": "github:NixOS/nixpkgs/8edc0c72e3a38faf5434e40d1f19431125fe4b30#ffmpeg",
+      "source": "devbox-search",
+      "version": "9.0.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/vil0k7wdg0jwyqc9kvg9dycsf65w4s4f-ffmpeg-9.0.1-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/zslkhz79mpnk945p5xhrixqch693b0k1-ffmpeg-9.0.1-man",
+              "default": true
+            },
+            {
+              "name": "data",
+              "path": "/nix/store/90qywla13481z1zqndl3mqcxx73gh71b-ffmpeg-9.0.1-data"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/lz3a9qanxc7j6pzwyy8j7gpga0d6j6xr-ffmpeg-9.0.1-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/z4g7lhqq0g6cy0hizy04z195gzjm3an7-ffmpeg-9.0.1-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/w7r73zzbx5r5igv9vafakpsvi6qhi0ck-ffmpeg-9.0.1-lib"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/hs0zl8416xzn8slhxf5292xs5k9a7dps-ffmpeg-9.0.1"
+            }
+          ],
+          "store_path": "/nix/store/vil0k7wdg0jwyqc9kvg9dycsf65w4s4f-ffmpeg-9.0.1-bin"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/jnz2ga879hc7ql2bvafkkn14smpclvxw-ffmpeg-9.0.1-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/1lfpla85k321b6fp30dg54w9qk2yd6kf-ffmpeg-9.0.1-man",
+              "default": true
+            },
+            {
+              "name": "data",
+              "path": "/nix/store/07z57709qf47iv21bzg547hi3miipmrk-ffmpeg-9.0.1-data"
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/jsf8g87s9ymclcs1ma6kjv21g6ig2lyp-ffmpeg-9.0.1-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/w39k6r24zww0hxlwh8xcsrdn7lh005lh-ffmpeg-9.0.1-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/r0dgl64vv0a0cmdhrfb4salqgys0l444-ffmpeg-9.0.1-lib"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/0dbim6ayjvz73qjn1g3cyq1b35xzl5q3-ffmpeg-9.0.1"
+            }
+          ],
+          "store_path": "/nix/store/jnz2ga879hc7ql2bvafkkn14smpclvxw-ffmpeg-9.0.1-bin"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "bin",
+              "path": "/nix/store/jzmlspv69xcby6bi634lj8xqfwavdjy8-ffmpeg-9.0.1-bin",
+              "default": true
+            },
+            {
+              "name": "man",
+              "path": "/nix/store/khgim81njkhfqrazp047mgrc7vc9yx9s-ffmpeg-9.0.1-man",
+              "default": true
+            },
+            {
+              "name": "dev",
+              "path": "/nix/store/jjwf6zg9vjsf651kwm95sfjx2lkbg7l6-ffmpeg-9.0.1-dev"
+            },
+            {
+              "name": "doc",
+              "path": "/nix/store/br0af8m05ja0nkdf34mbvbvg78s31wry-ffmpeg-9.0.1-doc"
+            },
+            {
+              "name": "lib",
+              "path": "/nix/store/lzd6qqah9y9pd9pprygv5v5pq9hh5k3n-ffmpeg-9.0.1-lib"
+            },
+            {
+              "name": "out",
+              "path": "/nix/store/kclwmygqgm6gib3n4ijywvlsq5bna483-ffmpeg-9.0.1"
+            },
+            {
+              "name": "data",
+              "path": "/nix/store/2jim7ckplgspjs5jvkwc62f4mdfxs1cj-ffmpeg-9.0.1-data"
+            }
+          ],
+          "store_path": "/nix/store/jzmlspv69xcby6bi634lj8xqfwavdjy8-ffmpeg-9.0.1-bin"
+        }
+      }
+    },
     "fzf": {
       "resolved": "github:NixOS/nixpkgs/4100e830e085863741bc69b156ec4ccd53ab5be0?narHash=sha256-NOF9NAREhxr50bbBfVcVOq%2BArCMSoe8dP79Pk2uyARk%3D#fzf",
       "source": "nixpkg",
